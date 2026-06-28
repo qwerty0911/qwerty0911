@@ -21,6 +21,8 @@ Python 기반의 AI/LLM 애플리케이션을 중심으로 학습하고 있으�
 - RAG 기반 챗봇
 - LangChain 체인 구성
 - Vector DB 검색
+- BM25 / Hybrid Search / Reranking
+- Query Transformation / Multi-Query / HyDE
 - Hugging Face Transformers 실습
 - 파인튜닝, LoRA, 양자화 기초
 
@@ -64,6 +66,33 @@ Python 기반의 AI/LLM 애플리케이션을 중심으로 학습하고 있으�
 - FastAPI 기반 백엔드 개발
 - 데이터 기반 문제 해결
 
+## Recent Learning
+
+### Week 5 Day 21 - Advanced RAG Search
+
+RAG 시스템의 검색 품질을 높이기 위한 주요 기법을 실습했습니다.
+
+- 청킹 전략 비교: `chunk_size`, `overlap` 변화에 따른 검색 결과와 문맥 보존 차이 분석
+- 검색 품질 진단: `top_k`, 유사도 점수, 임베딩 모델 선택이 한국어 검색 품질에 미치는 영향 확인
+- 하이브리드 검색: BM25 키워드 검색과 벡터 검색을 RRF로 결합해 서로의 약점 보완
+- 쿼리 변환: Multi-Query와 HyDE를 활용해 짧거나 모호한 질문의 검색 누락 완화
+- 리랭킹: Cross-Encoder 기반 2단계 검색으로 1차 후보를 정밀 재정렬
+- 모듈러 파이프라인: Multi-Query -> Hybrid Search -> Rerank -> Generate 흐름으로 end-to-end RAG 구성
+
+## Education
+
+- 가천대학교 컴퓨터공학과 졸업
+- 신한 DS 국비교육 과정 수료 (2023)
+
+## Experience
+
+- 타이호인스트 근무 (2024)
+
+## Certifications
+
+- SQLD
+- 정보처리기사
+
 ## Repository Topics 추천
 
 GitHub 저장소 Topics에는 아래 키워드를 추가하면 좋습니다.
@@ -86,4 +115,3 @@ jupyter-notebook
 huggingface
 pytorch
 ```
-
