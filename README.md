@@ -1,6 +1,40 @@
-# 안녕하세요, AI 서비스 개발을 공부하고 있는 백엔드/AI 개발자입니다.
+# 안녕하세요, AI 서비스 개발을 공부하는 백엔드/AI 개발자 김범규입니다.
 
-Python 기반의 AI/LLM 애플리케이션을 중심으로 학습하고 있으며, FastAPI 백엔드와 React 프론트엔드를 연결해 실제로 동작하는 서비스를 만드는 데 관심이 있습니다.
+LLM 애플리케이션을 단순히 호출하는 데서 끝내지 않고, **검색(RAG), 도구 호출, 상태 기반 워크플로우, 사용자 프로필 기반 추천**까지 연결해 실제 서비스 형태로 만드는 데 관심이 있습니다.  
+최근에는 채용공고 검색 및 적합도 분석 에이전트인 [`job-fit-agent`](https://github.com/qwerty0911/job-fit-agent)를 만들며 LangGraph 기반 Agent workflow와 RAG 구조를 실습하고 있습니다.
+
+## Focus
+
+- **AI Agent / RAG**: LangGraph, LangChain, vector search, hybrid search, reranking, structured output
+- **Backend**: FastAPI, Pydantic, REST API, streaming response, environment-based configuration
+- **Frontend**: React 기반 챗봇 UI, API 연동, 프로필/검색 결과 패널 설계
+- **Data / Infra**: PostgreSQL, pgvector, ChromaDB, Docker, Git
+
+## Current Project
+
+### [job-fit-agent](https://github.com/qwerty0911/job-fit-agent)
+
+사용자 프로필과 이력서를 기반으로 채용공고를 검색하고, 특정 공고의 요구사항과 사용자의 경험이 얼마나 잘 맞는지 분석하는 AI 에이전트 프로젝트입니다.
+
+주요 목표:
+
+- 자연어 채팅 입력을 `채용공고 검색` / `채용공고 분석` 의도로 분류
+- 검색 키워드가 있으면 해당 키워드로 공고 검색
+- 검색 키워드가 없으면 사용자 프로필의 기술스택 기반으로 공고 검색
+- 공고의 자격요건과 우대사항을 구조화하여 추출
+- 자격요건을 질문으로 변환해 이력서/자기소개서 vector store에서 근거 검색
+- 요구사항별 `충족 / 부분 충족 / 부족` 판단과 적합도 점수 제공
+
+구상 중인 workflow:
+
+```text
+User Chat
+→ Intent Router
+→ Job Search Agent or Job Analysis Agent
+→ Profile / Resume RAG
+→ Fit Judge
+→ Recommendation Response
+```
 
 ## Tech Stack
 
@@ -14,17 +48,15 @@ Python 기반의 AI/LLM 애플리케이션을 중심으로 학습하고 있으�
 
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=flat-square&logo=openai&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
+![LangGraph](https://img.shields.io/badge/LangGraph-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
 ![Hugging%20Face](https://img.shields.io/badge/Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 
-- LLM API 연동
-- RAG 기반 챗봇
-- LangChain 체인 구성
-- Vector DB 검색
-- BM25 / Hybrid Search / Reranking
-- Query Transformation / Multi-Query / HyDE
-- Hugging Face Transformers 실습
-- 파인튜닝, LoRA, 양자화 기초
+- RAG 기반 질의응답 구조 설계
+- Embedding / Vector Search / Hybrid Search
+- BM25, RRF, Reranking, HyDE, Multi-Query 실습
+- LangGraph 기반 state graph, conditional routing, tool calling workflow 실습
+- Pydantic structured output을 활용한 intent/result schema 설계
+- MCP, tool schema, long-term memory, checkpointer 개념 학습
 
 ### Backend
 
@@ -33,51 +65,55 @@ Python 기반의 AI/LLM 애플리케이션을 중심으로 학습하고 있으�
 ![Pydantic](https://img.shields.io/badge/Pydantic-E92063?style=flat-square&logo=pydantic&logoColor=white)
 
 - REST API 설계
-- Streaming API
-- OpenAI API 연동
-- 환경 변수 기반 설정 관리
+- LLM API 연동
+- Streaming response 설계
+- `.env` / `.env.example` 기반 환경변수 관리
+- Pydantic schema와 validator를 활용한 입력 검증
 
 ### Frontend
 
 ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
 ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=axios&logoColor=white)
 
-- React 기반 챗봇 UI
-- API 연동
-- 실시간 응답 스트리밍 UI 구성
+- React 기반 챗봇 UI 구현
+- 채팅 영역과 프로필/검색결과 패널을 분리한 2-column layout 구상
+- API 연동 및 응답 상태 표시
 
 ### Database / Infra
 
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white)
 
 - PostgreSQL / pgvector
 - ChromaDB
 - Docker / Docker Compose
-- Jupyter Notebook 기반 실험 및 정리
+- Jupyter Notebook 기반 실험 정리
+- GitHub repository 관리 및 README 문서화
 
-## 관심 분야
+## Learning Notes
 
-- LLM 애플리케이션 개발
-- RAG와 Agentic AI
-- AI 챗봇 서비스
-- FastAPI 기반 백엔드 개발
-- 데이터 기반 문제 해결
+최근 집중하고 있는 주제입니다.
 
-## Recent Learning
+- **RAG 검색 품질**: `top-k`, precision/recall, ANN, HNSW, reranking
+- **Query Transformation**: Multi-Query, HyDE, query rewriting
+- **Agent Workflow**: LangGraph node/edge/state/reducer, handoff, approval branch
+- **Tool Calling**: tool schema, Pydantic args schema, ToolEnvelope 패턴
+- **Memory**: InMemorySaver, DB saver/checkpointer, long-term store 구분
+- **MCP**: Host / Client / Server 구조와 tool 연결 프로토콜
 
-### Week 5 Day 21 - Advanced RAG Search
+## Direction
 
-RAG 시스템의 검색 품질을 높이기 위한 주요 기법을 실습했습니다.
+저는 AI 기능을 단순 데모로 끝내기보다, 사용자가 실제로 반복해서 쓸 수 있는 서비스 구조로 만드는 것에 관심이 있습니다.
 
-- 청킹 전략 비교: `chunk_size`, `overlap` 변화에 따른 검색 결과와 문맥 보존 차이 분석
-- 검색 품질 진단: `top_k`, 유사도 점수, 임베딩 모델 선택이 한국어 검색 품질에 미치는 영향 확인
-- 하이브리드 검색: BM25 키워드 검색과 벡터 검색을 RRF로 결합해 서로의 약점 보완
-- 쿼리 변환: Multi-Query와 HyDE를 활용해 짧거나 모호한 질문의 검색 누락 완화
-- 리랭킹: Cross-Encoder 기반 2단계 검색으로 1차 후보를 정밀 재정렬
-- 모듈러 파이프라인: Multi-Query -> Hybrid Search -> Rerank -> Generate 흐름으로 end-to-end RAG 구성
+현재는 아래 역량을 중심으로 포트폴리오를 쌓고 있습니다.
+
+- RAG와 Agentic AI를 활용한 문제 해결
+- FastAPI 기반 AI 백엔드 설계
+- React 챗봇 UI와 백엔드 API 연결
+- 사용자 프로필/이력서 기반 개인화 추천
+- 검색 결과의 근거와 판단 이유를 설명하는 AI 서비스
 
 ## Education
 
@@ -93,9 +129,7 @@ RAG 시스템의 검색 품질을 높이기 위한 주요 기법을 실습했습
 - SQLD
 - 정보처리기사
 
-## Repository Topics 추천
-
-GitHub 저장소 Topics에는 아래 키워드를 추가하면 좋습니다.
+## Repository Topics
 
 ```text
 python
@@ -103,6 +137,7 @@ fastapi
 react
 openai
 langchain
+langgraph
 rag
 llm
 agentic-ai
@@ -112,6 +147,4 @@ pgvector
 chromadb
 docker
 jupyter-notebook
-huggingface
-pytorch
 ```
